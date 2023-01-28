@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://b345bk26jamix"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_10yld"]
+[ext_resource type="Texture2D" uid="uid://bf4keik5l7nsf" path="res://icon_256.png" id="2_r8s2v"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_10yld")
+
+[node name="Title" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.186
+anchor_top = 0.151
+anchor_right = 0.186
+anchor_bottom = 0.151
+offset_left = 43.56
+offset_top = 105.96
+offset_right = 537.56
+offset_bottom = 153.96
+theme_override_font_sizes/font_size = 32
+text = "SCP-CB Map Generator Example"
+
+[node name="Play" type="Button" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.113
+anchor_top = 0.526
+anchor_right = 0.113
+anchor_bottom = 0.526
+offset_left = 55.48
+offset_top = 423.96
+offset_right = 298.48
+offset_bottom = 480.96
+grow_horizontal = 2
+grow_vertical = 2
+text = "Generate a facility!"
+
+[node name="Credits" type="Button" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.112
+anchor_top = 0.622
+anchor_right = 0.112
+anchor_bottom = 0.622
+offset_left = 54.52
+offset_top = 507.12
+offset_right = 296.52
+offset_bottom = 562.12
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits"
+
+[node name="Exit" type="Button" parent="Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.112
+anchor_top = 0.725
+anchor_right = 0.112
+anchor_bottom = 0.725
+offset_left = 53.52
+offset_top = 598.0
+offset_right = 295.52
+offset_bottom = 649.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+
+[node name="CreditPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -172.0
+offset_right = 375.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CreditPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -140.0
+offset_right = 340.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Map generation script created by VirtualBrightPlayz
+You can see it working in their Unity project
+( https://github.com/VirtualBrightPlayz/SCPCBRE )
+
+Room spawner created by Yni Viar.
+
+The license is CC-BY-SA-3.0"
+
+[node name="Icon256" type="Sprite2D" parent="."]
+position = Vector2(1267, 664)
+texture = ExtResource("2_r8s2v")
+
+[connection signal="pressed" from="Title/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Title/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Title/Exit" to="." method="_on_exit_pressed"]
