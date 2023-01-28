@@ -12,36 +12,43 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_10yld")
 
+[node name="Icon256" type="Sprite2D" parent="."]
+position = Vector2(1267, 664)
+texture = ExtResource("2_r8s2v")
+
 [node name="Title" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="Title"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.186
-anchor_top = 0.151
-anchor_right = 0.186
-anchor_bottom = 0.151
-offset_left = 43.56
-offset_top = 105.96
-offset_right = 537.56
-offset_bottom = 153.96
+anchor_left = 0.189
+anchor_top = 0.154
+anchor_right = 0.189
+anchor_bottom = 0.154
+offset_left = -247.4
+offset_top = -23.6
+offset_right = 246.6
+offset_bottom = 24.4
 theme_override_font_sizes/font_size = 32
 text = "SCP-CB Map Generator Example"
 
 [node name="Play" type="Button" parent="Title"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.113
-anchor_top = 0.526
-anchor_right = 0.113
-anchor_bottom = 0.526
-offset_left = 55.48
-offset_top = 423.96
-offset_right = 298.48
-offset_bottom = 480.96
+anchor_left = 0.115
+anchor_top = 0.529
+anchor_right = 0.115
+anchor_bottom = 0.529
+offset_left = -120.0
+offset_top = -28.1
+offset_right = 120.0
+offset_bottom = 28.9
 grow_horizontal = 2
 grow_vertical = 2
 text = "Generate a facility!"
@@ -49,14 +56,14 @@ text = "Generate a facility!"
 [node name="Credits" type="Button" parent="Title"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.112
-anchor_top = 0.622
-anchor_right = 0.112
-anchor_bottom = 0.622
-offset_left = 54.52
-offset_top = 507.12
-offset_right = 296.52
-offset_bottom = 562.12
+anchor_left = 0.115
+anchor_top = 0.626
+anchor_right = 0.115
+anchor_bottom = 0.626
+offset_left = -120.0
+offset_top = -27.4
+offset_right = 120.0
+offset_bottom = 27.6
 grow_horizontal = 2
 grow_vertical = 2
 text = "Credits"
@@ -64,14 +71,14 @@ text = "Credits"
 [node name="Exit" type="Button" parent="Title"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.112
-anchor_top = 0.725
-anchor_right = 0.112
-anchor_bottom = 0.725
-offset_left = 53.52
-offset_top = 598.0
-offset_right = 295.52
-offset_bottom = 649.0
+anchor_left = 0.115
+anchor_top = 0.722
+anchor_right = 0.115
+anchor_bottom = 0.722
+offset_left = -120.0
+offset_top = -25.8
+offset_right = 120.0
+offset_bottom = 25.2
 grow_horizontal = 2
 grow_vertical = 2
 text = "Exit"
@@ -110,11 +117,9 @@ You can see it working in their Unity project
 
 Room spawner created by Yni Viar.
 
-The license is CC-BY-SA-3.0"
+Assets from SCP - Containment Breach
 
-[node name="Icon256" type="Sprite2D" parent="."]
-position = Vector2(1267, 664)
-texture = ExtResource("2_r8s2v")
+The license is CC-BY-SA-3.0"
 
 [connection signal="pressed" from="Title/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Title/Credits" to="." method="_on_credits_pressed"]
