@@ -3,7 +3,6 @@ extends Control
 
 #Written from tutorials ;D
 var path: String = "res://Addons/MapGen/Scenes/TestMapGen.tscn"
-@onready var progress_bar : ProgressBar = $progress
 var progress = []
 @export var anim: AnimationPlayer
 
