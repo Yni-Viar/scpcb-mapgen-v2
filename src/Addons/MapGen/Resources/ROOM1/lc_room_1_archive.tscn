@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cuhopdmrjulgp"]
 
 [ext_resource type="Material" uid="uid://4ucy6rv6imgh" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat0.008.tres" id="1_esfvy"]
-[ext_resource type="PackedScene" uid="uid://cnm1o6ksalar3" path="res://FPSController/Player.tscn" id="1_ujil4"]
+[ext_resource type="PackedScene" uid="uid://cm7mcq5rrgaxi" path="res://FPSController/PlayerScene.tscn" id="1_tum6i"]
 [ext_resource type="Material" uid="uid://d1ottj6hw32g6" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat1.008.tres" id="2_3sgf6"]
 [ext_resource type="Material" uid="uid://xavvgo8mgt7d" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat2.008.tres" id="3_4kaxx"]
 [ext_resource type="Material" uid="uid://bgfqyca6uy6l" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat3.008.tres" id="4_ucie5"]
@@ -107,7 +107,8 @@ data = PackedVector3Array(-7.36, 10.24, 0, -7.36, -6.56, 0, 2.56, -6.56, 0, -7.3
 
 [node name="LC_room1_archive" type="StaticBody3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_ujil4")]
+[node name="Player" parent="." instance=ExtResource("1_tum6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2822, 0)
 
 [node name="LC_room1_archive2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, 0, 0)

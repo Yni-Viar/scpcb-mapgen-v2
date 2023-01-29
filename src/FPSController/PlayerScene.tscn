@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm7mcq5rrgaxi"]
+
+[ext_resource type="Script" path="res://FPSController/PlayerScript.gd" id="1_luuis"]
+
+[sub_resource type="CapsuleShape3D" id="1"]
+radius = 0.27184
+height = 2.55459
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28033, 0)
+script = ExtResource("1_luuis")
+
+[node name="PlayerHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, 0)
+
+[node name="PlayerCamera" type="Camera3D" parent="PlayerHead"]
+
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead"]
+collide_with_areas = true
+
+[node name="StepChecker" type="RayCast3D" parent="PlayerHead"]
+target_position = Vector3(0, -3, 0)
+
+[node name="CollisionBodyCapsule" type="CollisionShape3D" parent="."]
+shape = SubResource("1")
+
+[node name="UI" type="Node" parent="."]
