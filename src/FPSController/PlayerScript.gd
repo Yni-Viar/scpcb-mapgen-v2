@@ -4,11 +4,12 @@ extends CharacterBody3D
 #Some parts used from elmarcoh (this script is also public domain).
 @onready var player_head = $PlayerHead
 @onready var ray = $PlayerHead/RayCast3D
-@onready var step_checker = $PlayerHead/StepChecker
+@onready var bottom_raycast = $PlayerFeet/StairCheck
+@onready var top_raycast = $PlayerFeet/StairCheck2
 
 var speed = 4.5
 var jump = 4.5
-var gravity = 16
+var gravity = 9.8
 
 var ground_acceleration = 8
 var air_acceleration = 8
@@ -91,6 +92,12 @@ func _physics_process(delta):
 	else:
 		vel = vel.lerp(direction * speed, acceleration * delta)
 	
+	if bottom_raycast.is_colliding() and !top_raycast.is_colliding():
+		if Input.is_action_pressed("move_down") or Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
+			floor_max_angle = 0.785398 #45 degrees
+		else:
+			floor_max_angle = PI / 2 #90 degrees, need to clim stairs
+	
 	movement.z = vel.z + gravity_vector.z
 	movement.x = vel.x + gravity_vector.x
 	movement.y = gravity_vector.y
@@ -98,4 +105,3 @@ func _physics_process(delta):
 	set_velocity(movement)
 	set_up_direction(Vector3.UP)
 	move_and_slide()
-	

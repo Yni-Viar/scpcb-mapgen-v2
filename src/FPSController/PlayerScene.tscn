@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://FPSController/PlayerScript.gd" id="1_luuis"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
-radius = 0.27184
+radius = 0.371158
 height = 2.55459
 
 [node name="Player" type="CharacterBody3D"]
@@ -18,8 +18,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, 0)
 [node name="RayCast3D" type="RayCast3D" parent="PlayerHead"]
 collide_with_areas = true
 
-[node name="StepChecker" type="RayCast3D" parent="PlayerHead"]
-target_position = Vector3(0, -3, 0)
+[node name="PlayerFeet" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.852122, -0.183911)
+
+[node name="StairCheck" type="RayCast3D" parent="PlayerFeet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.368611, 0)
+target_position = Vector3(0, 0, -1)
+
+[node name="StairCheck2" type="RayCast3D" parent="PlayerFeet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00260222, -0.0596307, -0.00418782)
+target_position = Vector3(0, 0, -1)
 
 [node name="CollisionBodyCapsule" type="CollisionShape3D" parent="."]
 shape = SubResource("1")
