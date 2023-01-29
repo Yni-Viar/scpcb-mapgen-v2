@@ -22,7 +22,7 @@ window/size/viewport_height=900
 
 [dotnet]
 
-project/assembly_name="1"
+project/assembly_name="scpcb_mapgen"
 
 [editor]
 
