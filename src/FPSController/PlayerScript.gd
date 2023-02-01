@@ -96,7 +96,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed("move_down") or Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
 			floor_max_angle = 0.785398 #45 degrees
 		else:
-			floor_max_angle = PI / 2 #90 degrees, need to clim stairs
+			floor_max_angle = 1.308996 #75 degrees, need to clim stairs
 	
 	movement.z = vel.z + gravity_vector.z
 	movement.x = vel.x + gravity_vector.x
