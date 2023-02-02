@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm7mcq5rrgaxi"]
 
-[ext_resource type="Script" path="res://FPSController/PlayerScript.gd" id="1_luuis"]
+[ext_resource type="Script" path="res://FPSController/PlayerScript.cs" id="1_w825c"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.371158
@@ -10,7 +10,7 @@ height = 2.26761
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28033, 0)
-script = ExtResource("1_luuis")
+script = ExtResource("1_w825c")
 
 [node name="PlayerHead" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, 0)
