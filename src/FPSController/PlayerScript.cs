@@ -61,14 +61,7 @@ public partial class PlayerScript : CharacterBody3D
 
         if (Input.IsActionJustPressed("ui_cancel"))
         {
-            if (Input.MouseMode == Input.MouseModeEnum.Captured)
-            {
-                Input.MouseMode = Input.MouseModeEnum.Visible;
-            }
-            else
-            {
-                Input.MouseMode = Input.MouseModeEnum.Captured;
-            }
+            GetTree().Quit();
         }
     }
 

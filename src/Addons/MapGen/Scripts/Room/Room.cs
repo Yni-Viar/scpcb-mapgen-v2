@@ -19,6 +19,7 @@ public partial class Room : Node3D
 
     public PackedScene GetRoomMesh(string roomName, MapGenerator.RoomType type)
     {
+        //spawn usual room
         if (string.IsNullOrEmpty(roomName))
         {
             if (type == MapGenerator.RoomType.ROOM1)
@@ -49,6 +50,7 @@ public partial class Room : Node3D
         }
         else
         {
+            //and there, switch-case of the special rooms.
             switch (roomName)
             {
                 case "LC_room1_archive":

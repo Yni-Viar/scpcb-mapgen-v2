@@ -149,16 +149,6 @@ public partial class MapGenerator : Node
             x = temp;
             y = y - height;
         }
-        //idk
-        /*for (int k = 0; k < MapSize.y; k++)
-        {
-            for (int j = 0; j < MapSize.x; j++)
-            {
-                Vector3 pos = new Vector3(j, 0f, k);
-                if (MapTemp[j, k] >= 1)
-                    Debug.DrawLine(pos, pos + Vector3.up, Color.red, 1f);
-            }
-        } - Unity*/
         //rooms and zone amount
         int ZoneAmount = 3;
         int[] Room1Amount = new int[ZoneAmount];
@@ -312,6 +302,8 @@ public partial class MapGenerator : Node
 
         int min_pos = 1;
         int max_pos = Room1Amount[0]-1;
+
+        //there you need to put special rooms. MapRoom spawns the first room, SetRoom - others (more randomly)
 
         MapRoom[(int)RoomType.ROOM1, 0] = "LC_room1_archive";
 
