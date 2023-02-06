@@ -1,10 +1,11 @@
 # Manual of spawning rooms in the SCP-CB mapgen.
 I hope my guide will be easy for you.
+
 ## How to add your room?
 1. You need to put your room in the folder: 
     1. ROOM1, if your room has only one exit; 
     2. ROOM2 - if the room has two exits; 
-    3. ROOM2C, if the room has two exit and it is a corner; 
+    3. ROOM2C, if the room has two exits and it is a corner; 
     4. ROOM3, if the room has three exits. 
     5. ROOM4, if the room has four exits.
 2. You need to add to the MapGenerator.cs next lines (works only with unique rooms):
@@ -25,12 +26,13 @@ I hope my guide will be easy for you.
 
 ## How to change the map size?
 You need to change two variables:
-1. `int width = rng.Next(lower, higher);` at line 71
+- > `int width = rng.Next(lower, higher);` at line 71
     - this is for not exiting an array.
-2. The vector2 parameter in Godot Editor.
-- As example.
-    - if the map (vector2) is 12 x 12, width is random between 6 and 10,
-    - else if the map (vector2) is 18 x 18 (original SCP-CB), width is random between 10 and 16,
+- The vector2 parameter in Godot Editor.
+- As example:
+    - if the map (vector2) is 12 x 12, width is between 6 and 10,
+    - else if the map (vector2) is 18 x 18 (original SCP-CB), width is random 10 and 16,
+
 ## How to name your room, if I want to use it for an SCP game?
 `first_second_third`
 1. first is a facility zone, where:
