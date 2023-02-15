@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqyvd6hadigaj"]
+[gd_scene load_steps=10 format=3 uid="uid://cqyvd6hadigaj"]
 
 [ext_resource type="Material" uid="uid://h8xc0er08muc" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat0.009.tres" id="1_d7lqq"]
 [ext_resource type="Material" uid="uid://c2cbrriqujp6y" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat1.009.tres" id="2_ilsih"]
@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://dcqxlln1pcaiw" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat3.009.tres" id="4_lxug8"]
 [ext_resource type="Material" uid="uid://3ybx2mwfu24h" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat4.008.tres" id="5_x8sos"]
 [ext_resource type="Material" uid="uid://p0r2hykdt2px" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat5.008.tres" id="6_17hbm"]
-[ext_resource type="LightmapGIData" uid="uid://gypb1f2qnaun" path="res://Addons/MapGen/Resources/ROOM1/Lm/lc_room_1_endroom.lmbake" id="7_pkwgc"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_an3np"]
 _surfaces = [{
@@ -169,7 +168,3 @@ light_color = Color(1, 0, 0, 1)
 distance_fade_enabled = true
 distance_fade_begin = 20.0
 omni_range = 10.0
-
-[node name="LightmapGI" type="LightmapGI" parent="."]
-visible = false
-light_data = ExtResource("7_pkwgc")

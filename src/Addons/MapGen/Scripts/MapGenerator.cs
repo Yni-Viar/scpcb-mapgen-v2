@@ -12,7 +12,7 @@ public partial class MapGenerator : Node
     //seed
     public int RandomSeed = rnd.Next(0, 2147483647);
     
-    [Export] public Vector2i MapSize = new Vector2i(12, 12);
+    [Export] public Vector2I MapSize = new Vector2I(12, 12);
 
     public enum RoomType : int
     {
@@ -49,18 +49,18 @@ public partial class MapGenerator : Node
     {
         System.Random rng = new System.Random();
         //output map size
-        string[,] MapName = new string[MapSize.x, MapSize.y];
+        string[,] MapName = new string[MapSize.X, MapSize.Y];
         //actual map size
-        int[,] MapTemp = new int[MapSize.x, MapSize.y];
+        int[,] MapTemp = new int[MapSize.X, MapSize.Y];
         //???
         int[] MapRoomId = new int[5];
         //needed to be not out-of-bounds
-        int x = MapSize.x / 2;
-        int y = MapSize.y - 2;
+        int x = MapSize.X / 2;
+        int y = MapSize.Y - 2;
         int temp = 0;
 
         //probably check
-        for (int i = y; i < MapSize.y; i++)
+        for (int i = y; i < MapSize.Y; i++)
         {
             MapTemp[x, i] = 1;
         }
@@ -70,18 +70,18 @@ public partial class MapGenerator : Node
             //map width
             int width = rng.Next(6, 10);
 
-            if (x > MapSize.x * 0.6f)
+            if (x > MapSize.X * 0.6f)
             {
                 width = -width;
             }
-            else if (x > MapSize.x * 0.4f)
+            else if (x > MapSize.X * 0.4f)
             {
                 x = x - width / 2;
             }
 
-            if (x + width > MapSize.x - 3)
+            if (x + width > MapSize.X - 3)
             {
-                width = MapSize.x - 3 - x;
+                width = MapSize.X - 3 - x;
             }
             else if (x + width < 2)
             {
@@ -93,7 +93,7 @@ public partial class MapGenerator : Node
             //probably map generation
             for (int i = x; i < x + width; i++)
             {
-                MapTemp[Mathf.Min(i, MapSize.x), y] = 1;
+                MapTemp[Mathf.Min(i, MapSize.X), y] = 1;
             }
             //map zone height
             int height = rng.Next(3, 5);
@@ -108,7 +108,7 @@ public partial class MapGenerator : Node
 
             for (int i = 0; i < yhallways; i++) //spawning corridors not in line but in a labyrinth
             {
-                int x2 = Mathf.Max(Mathf.Min(rng.Next(x, x + width), MapSize.x - 2), 2);
+                int x2 = Mathf.Max(Mathf.Min(rng.Next(x, x + width), MapSize.X - 2), 2);
                 //checks
                 while (IsInBounds(MapTemp, x2) && IsInBounds(MapTemp, x2 - 1) && IsInBounds(MapTemp, x2 + 1) && (MapTemp[x2, y - 1] >= 1 || MapTemp[x2 - 1, y - 1] >= 1 || MapTemp[x2 + 1, y - 1] >= 1))
                 {
@@ -157,11 +157,11 @@ public partial class MapGenerator : Node
         int[] Room3Amount = new int[ZoneAmount];
         int[] Room4Amount = new int[ZoneAmount];
 
-        for (y = 1; y < MapSize.y - 1; y++)
+        for (y = 1; y < MapSize.Y - 1; y++)
         {
             int zone = GetZone(y) - 1;
 
-            for (x = 1; x < MapSize.x - 1; x++)
+            for (x = 1; x < MapSize.X - 1; x++)
             {
                 if (MapTemp[x, y] > 0)
                 {
@@ -292,7 +292,7 @@ public partial class MapGenerator : Node
         }
         */
 
-        int MaxRooms = 55 * MapSize.x / 20;
+        int MaxRooms = 55 * MapSize.X / 20;
         MaxRooms = Mathf.Max(MaxRooms, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]+1);
         MaxRooms = Mathf.Max(MaxRooms, Room2Amount[0]+Room2Amount[1]+Room2Amount[2]+1);
         MaxRooms = Mathf.Max(MaxRooms, Room2CAmount[0]+Room2CAmount[1]+Room2CAmount[2]+1);

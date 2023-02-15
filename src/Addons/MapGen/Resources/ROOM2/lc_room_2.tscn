@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v0djr8l8pxip"]
+[gd_scene load_steps=10 format=3 uid="uid://v0djr8l8pxip"]
 
 [ext_resource type="Material" uid="uid://dkup48rwp0ipr" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat0.010.tres" id="1_ngfiy"]
 [ext_resource type="Material" uid="uid://t6f0kcw188s6" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat1.010.tres" id="2_v6hgi"]
@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://creol0q0a1gxq" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat3.010.tres" id="4_56yfy"]
 [ext_resource type="Material" uid="uid://d1en58owy48cv" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat4.009.tres" id="5_yftqo"]
 [ext_resource type="Material" uid="uid://gwwfky1jpqgw" path="res://Addons/MapGen/Resources/RoomAssets/LCZ/mat5.009.tres" id="6_pspgt"]
-[ext_resource type="LightmapGIData" uid="uid://cm3sfado4iorv" path="res://Addons/MapGen/Resources/ROOM2/Lm/lc_room_2.lmbake" id="7_vmjle"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6cdce"]
 _surfaces = [{
@@ -159,7 +158,3 @@ omni_range = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.90386, -2.56078)
 distance_fade_enabled = true
 omni_range = 10.0
-
-[node name="LightmapGI" type="LightmapGI" parent="."]
-visible = false
-light_data = ExtResource("7_vmjle")

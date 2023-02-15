@@ -51,13 +51,13 @@ public partial class PlayerScript : CharacterBody3D
         if (@event is InputEventMouseMotion)
         {
             InputEventMouseMotion m = (InputEventMouseMotion) @event;
-            this.RotateY(Mathf.DegToRad(-m.Relative.x * mouseSensivity.y / 10));
-            playerHead.RotateX(Mathf.Clamp(-m.Relative.y * mouseSensivity.x / 10, -90, 90));
+            this.RotateY(Mathf.DegToRad(-m.Relative.X * mouseSensivity.Y / 10));
+            playerHead.RotateX(Mathf.Clamp(-m.Relative.Y * mouseSensivity.X / 10, -90, 90));
         }
         direction = new Vector3();
-        direction.z = -Input.GetActionStrength("move_forward") + Input.GetActionStrength("move_backward");
-        direction.x = -Input.GetActionStrength("move_left") + Input.GetActionStrength("move_right");
-        direction = direction.Normalized().Rotated(Vector3.Up, Rotation.y);
+        direction.Z = -Input.GetActionStrength("move_forward") + Input.GetActionStrength("move_backward");
+        direction.X = -Input.GetActionStrength("move_left") + Input.GetActionStrength("move_right");
+        direction = direction.Normalized().Rotated(Vector3.Up, Rotation.Y);
 
         if (Input.IsActionJustPressed("ui_cancel"))
         {
@@ -112,9 +112,9 @@ public partial class PlayerScript : CharacterBody3D
             }
         }
 
-        movement.z = vel.z + gravityVector.z;
-        movement.x = vel.x + gravityVector.x;
-	    movement.y = gravityVector.y;
+        movement.Z = vel.Z + gravityVector.Z;
+        movement.X = vel.X + gravityVector.X;
+	    movement.Y = gravityVector.Y;
 
         Velocity = movement;
         UpDirection = Vector3.Up;
