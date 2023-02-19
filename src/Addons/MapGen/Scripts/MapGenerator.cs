@@ -150,7 +150,7 @@ public partial class MapGenerator : Node
             y = y - height;
         }
         //rooms and zone amount
-        int ZoneAmount = 3;
+        int ZoneAmount = 1; //if you want more zones (CB-style), you can add this value.
         int[] Room1Amount = new int[ZoneAmount];
         int[] Room2Amount = new int[ZoneAmount];
         int[] Room2CAmount = new int[ZoneAmount];
@@ -293,11 +293,11 @@ public partial class MapGenerator : Node
         */
 
         int MaxRooms = 55 * MapSize.X / 20;
-        MaxRooms = Mathf.Max(MaxRooms, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]+1);
-        MaxRooms = Mathf.Max(MaxRooms, Room2Amount[0]+Room2Amount[1]+Room2Amount[2]+1);
-        MaxRooms = Mathf.Max(MaxRooms, Room2CAmount[0]+Room2CAmount[1]+Room2CAmount[2]+1);
-        MaxRooms = Mathf.Max(MaxRooms, Room3Amount[0]+Room3Amount[1]+Room3Amount[2]+1);
-        MaxRooms = Mathf.Max(MaxRooms, Room4Amount[0]+Room4Amount[1]+Room4Amount[2]+1);
+        MaxRooms = Mathf.Max(MaxRooms, Room1Amount[0]+1);//+Room1Amount[1]+Room1Amount[2]
+        MaxRooms = Mathf.Max(MaxRooms, Room2Amount[0]+1);//+Room2Amount[1]+Room2Amount[2]
+        MaxRooms = Mathf.Max(MaxRooms, Room2CAmount[0]+1);//+Room2CAmount[1]+Room2CAmount[2]
+        MaxRooms = Mathf.Max(MaxRooms, Room3Amount[0]+1);//+Room3Amount[1]+Room3Amount[2]
+        MaxRooms = Mathf.Max(MaxRooms, Room4Amount[0]+1);//+Room4Amount[1]+Room4Amount[2]
         string[,] MapRoom = new string[(int)RoomType.ROOM4 + 1, MaxRooms];
 
         int min_pos = 1;
@@ -307,15 +307,15 @@ public partial class MapGenerator : Node
 
         MapRoom[(int)RoomType.ROOM1, 0] = "LC_room1_archive";
 
-        SetRoom(ref MapRoom, "LC_cont1_049", RoomType.ROOM1, Mathf.FloorToInt(0.1f * Room1Amount[0]), min_pos, max_pos);
         SetRoom(ref MapRoom, "LC_cont1_079", RoomType.ROOM1, Mathf.FloorToInt(0.3f * Room1Amount[0]), min_pos, max_pos);
 
         MapRoom[(int)RoomType.ROOM2, 0] = "LC_room2_hall";
 
         SetRoom(ref MapRoom, "LC_cont2_012", RoomType.ROOM2, Mathf.FloorToInt(0.1f * Room2Amount[0]), min_pos, max_pos);
         SetRoom(ref MapRoom, "LC_cont2_650", RoomType.ROOM2, Mathf.FloorToInt(0.2f * Room2Amount[0]), min_pos, max_pos);
-        SetRoom(ref MapRoom, "LC_room2_sl", RoomType.ROOM2, Mathf.FloorToInt(0.3f * Room2Amount[0]), min_pos, max_pos);
         SetRoom(ref MapRoom, "LC_room2_vent", RoomType.ROOM2, Mathf.FloorToInt(0.4f * Room2Amount[0]), min_pos, max_pos);
+        SetRoom(ref MapRoom, "LC_room2_sl", RoomType.ROOM2, Mathf.FloorToInt(0.8f * Room2Amount[0]), min_pos, max_pos);
+
 
         await SpawnMap(MapTemp, MapRoom, MaxRooms, rng);
     }
@@ -495,7 +495,6 @@ public partial class MapGenerator : Node
     public async Task<Node3D> CreateRoom(int zone, RoomType type, int x, int y, int z, string room_name, System.Random rng)
     {
         Room room = new Room(zone);
-        //RMeshData room = await AssetCache.LoadRoom(room_name, type, zone, rng, token); - Unity
         Node3D go = (Node3D)room.GetRoomMesh(room_name, type).Instantiate(); //Instantiate(room.gameObject, transform);
         go.Translate(new Vector3(x * 20.48f, y * 20.48f, z * 20.48f));
         AddChild(go);

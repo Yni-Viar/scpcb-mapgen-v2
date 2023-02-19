@@ -33,6 +33,15 @@ You need to change two variables:
     - if the map (vector2) is 12 x 12, width is between 6 and 10,
     - else if the map (vector2) is 18 x 18 (original SCP-CB), width is random 10 and 16,
 
+## How to change the zone size?
+You need to change some variables...
+- > `int ZoneAmount = 1`
+    - this value means a quantity of zones. In the test, there is only one zone, but you can change this value.
+- > `MaxRooms = Mathf.Max(MaxRooms, Room<type>Amount[0] + Room<type>Amount[n]+1)`
+    - these values needed for properly zone spawning.
+    - How much are zones, defined in ZoneAmount, so how much will be quantity of elements of the array.
+    - In the code only one zone is being used, but there are two more zones commented. Why - because our array consist of only one item...
+
 ## How to name your room, if I want to use it for an SCP game?
 `first_second_third`
 1. first is a facility zone, where:
