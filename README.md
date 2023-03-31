@@ -6,7 +6,7 @@ SCP-CB procedural generation sample in Godot Engine 4
 - SCP-079 model created by Hakkla
 
 - Map generation script created by VirtualBrightPlayz
-You can see it working in their Unity project ( https://github.com/VirtualBrightPlayz/SCPCBRE )
+- You can see it working in their Unity project ( https://github.com/VirtualBrightPlayz/SCPCBRE )
 
 - Room spawner created by Yni Viar.
 
