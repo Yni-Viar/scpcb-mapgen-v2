@@ -9,10 +9,13 @@ I hope my guide will be easy for you.
     4. ROOM3, if the room has three exits. 
     5. ROOM4, if the room has four exits.
 2. You need to add to the MapGenerator.cs next lines (works only with unique rooms):
-    1. > `MapRoom[(int)RoomType.ROOM<type>, 0] = "first_second_third";`
+    1. > `MapRoom[(int)RoomType.ROOM<type>, <position>] = "first_second_third";`
         - if it is for the first unique room (beginning with line 308).
     2. > `SetRoom(ref MapRoom, "first_second_third", RoomType.ROOM<type>, Mathf.FloorToInt(<float-number-ascending, e.g. 0.1f> * Room<type>Amount[0]), min_pos, max_pos);`
         - if it is for other unique rooms (beginning with line 310).
+    3. > `int min_pos = 1;`
+         `int max_pos = Room<type>Amount[0]-1;`
+        - for normal spawn of a custom room. Each room type - each max_pos.
 3. And the Room/Room.cs
     1. if you want to change a normal room, then you need change:
         1. string in line 27 if it is a ROOM1,
@@ -41,6 +44,9 @@ You need to change some variables...
     - these values needed for properly zone spawning.
     - How much are zones, defined in ZoneAmount, so how much will be quantity of elements of the array.
     - In the code only one zone is being used, but there are two more zones commented. Why - because our array consist of only one item...
+- If you want to add special rooms in a second zone, you need to move min_pos and max_pos, mentioned earlier to the next zone:
+    - > `min_pos = Room<type>Amount[0];`
+      > `max_pos = Room<type>Amount[0]+Room<type>Amount[n]-1;`
 
 ## How to name your room, if I want to use it for an SCP game?
 `first_second_third`
