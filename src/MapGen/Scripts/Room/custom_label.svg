@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16.0px"
+   height="16.0px"
+   viewBox="0 0 16.0 16.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="custom_label.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1054"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="11.199809"
+     inkscape:cx="6.9197609"
+     inkscape:cy="12.857362"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1540" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1049" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#fc7f7f"
+       id="rect4061"
+       width="1.0047846"
+       height="15.980862"
+       x="3.0023923"
+       y="0.011961723" />
+    <rect
+       style="fill:#fc7f7f"
+       id="rect4063"
+       width="1.0047846"
+       height="15.980862"
+       x="11.997607"
+       y="0.011961726" />
+    <rect
+       style="fill:#fc7f7f"
+       id="rect4065"
+       width="2.0095694"
+       height="0.98086125"
+       x="10"
+       y="0" />
+    <rect
+       style="fill:#fc7f7f"
+       id="rect4065-2"
+       width="2.0095694"
+       height="0.98086125"
+       x="4.0011959"
+       y="7.4149305e-08" />
+    <rect
+       style="fill:#fc7f7f"
+       id="rect4065-3"
+       width="2.0095694"
+       height="0.98086125"
+       x="4.0191383"
+       y="15.011962" />
+    <rect
+       style="fill:#fc7f7f"
+       id="rect4065-0"
+       width="2.0095694"
+       height="0.98086125"
+       x="9.9880381"
+       y="15.011962" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;font-family:Righteous;-inkscape-font-specification:Righteous;fill:#fc7f7f"
+       x="4.4643621"
+       y="9.8215961"
+       id="text4341"><tspan
+         id="tspan4339"
+         x="4.4643621"
+         y="9.8215961"
+         sodipodi:role="line">CB</tspan></text>
+  </g>
+</svg>

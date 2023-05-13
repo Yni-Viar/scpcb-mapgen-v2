@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/LoadingScreen.gd" id="1_0h78a"]
 
-[node name="LoadingScreen" type="Control" node_paths=PackedStringArray("anim")]
+[node name="LoadingScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_0h78a")
-anim = NodePath("")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

@@ -1,0 +1,55 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dffhs52q3xpd7"
+path="res://.godot/imported/LC_room2C.glb-cd5dd0b3e6e5d3e6f01f57a22163a62f.scn"
+
+[deps]
+
+source_file="res://MapGen/Resources/RoomAssets/LCZ/LC_room2C.glb"
+dest_files=["res://.godot/imported/LC_room2C.glb-cd5dd0b3e6e5d3e6f01f57a22163a62f.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"mat0.003": {
+"use_external/enabled": true,
+"use_external/path": "res://Addons/MapGen/Resources/RoomAssets/LCZ/mat0.003.tres"
+},
+"mat1.003": {
+"use_external/enabled": true,
+"use_external/path": "res://Addons/MapGen/Resources/RoomAssets/LCZ/mat1.003.tres"
+},
+"mat2.003": {
+"use_external/enabled": true,
+"use_external/path": "res://Addons/MapGen/Resources/RoomAssets/LCZ/mat2.003.tres"
+},
+"mat3.003": {
+"use_external/enabled": true,
+"use_external/path": "res://Addons/MapGen/Resources/RoomAssets/LCZ/mat3.003.tres"
+},
+"mat4.003": {
+"use_external/enabled": true,
+"use_external/path": "res://Addons/MapGen/Resources/RoomAssets/LCZ/mat4.003.tres"
+}
+}
+}
+gltf/embedded_image_handling=1
