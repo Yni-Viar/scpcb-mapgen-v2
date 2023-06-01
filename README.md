@@ -1,7 +1,7 @@
 # scpcb-mapgen
 
 ## THIS PROJECT IS DEPRECATED DUE TO SOME BUGS.
-## I recommend to move to a [new](https://github.com/Yni-Viar/scp-mapgen-v2) map generator due to issues.
+## I recommend to move to a [new](https://github.com/Yni-Viar/scp-mapgen-v3) map generator due to issues.
 
 SCP-CB procedural generation sample in Godot Engine 4
 
