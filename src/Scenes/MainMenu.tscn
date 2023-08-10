@@ -47,7 +47,7 @@ offset_top = -23.6
 offset_right = 246.6
 offset_bottom = 24.4
 theme_override_font_sizes/font_size = 32
-text = "SCP-CB Map Generator Example"
+text = "SCP-CB Map Generator v2 Example"
 
 [node name="Play" type="Button" parent="Title"]
 layout_mode = 1

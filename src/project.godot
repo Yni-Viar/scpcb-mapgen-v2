@@ -12,8 +12,8 @@ config_version=5
 
 config/name="SCP-CB Map Generation"
 run/main_scene="res://Scenes/MainMenu.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://icon.png"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/icon="res://icon_64.png"
 
 [display]
 

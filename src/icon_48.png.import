@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhydi2ou82y5g"
-path="res://.godot/imported/custom_label.svg-9976b4a20e6afeb0bf034b18cf02f29e.ctex"
+uid="uid://djqutibrao8hy"
+path="res://.godot/imported/icon_48.png-350e543f49ecfc2da2e98dab1aa7cf02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MapGen/Scripts/Room/custom_label.svg"
-dest_files=["res://.godot/imported/custom_label.svg-9976b4a20e6afeb0bf034b18cf02f29e.ctex"]
+source_file="res://icon_48.png"
+dest_files=["res://.godot/imported/icon_48.png-350e543f49ecfc2da2e98dab1aa7cf02.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
