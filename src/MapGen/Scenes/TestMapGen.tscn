@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmii1ln8odksi"]
+[gd_scene load_steps=3 format=3 uid="uid://cmii1ln8odksi"]
+
+[ext_resource type="Script" path="res://MapGen/Scripts/MapGeneratorSmall.cs" id="1_06m16"]
 
 [sub_resource type="Environment" id="Environment_pp1cg"]
 fog_enabled = true
@@ -9,6 +11,7 @@ fog_height = 1.25
 [node name="Game" type="Node3D"]
 
 [node name="MapGen" type="Node" parent="."]
+script = ExtResource("1_06m16")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pp1cg")

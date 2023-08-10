@@ -122,11 +122,9 @@ offset_right = 340.0
 offset_bottom = 143.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Map generation script created by VirtualBrightPlayz
-You can see it working in their Unity project
-( https://github.com/VirtualBrightPlayz/SCPCBRE )
+text = "Map generation script created by juanjp600
 
-Room spawner created by Yni Viar.
+Created main menu + ported to C# by Yni Viar.
 
 Assets from SCP - Containment Breach
 
