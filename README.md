@@ -11,7 +11,3 @@ SCP-CB procedural generation sample in Godot Engine 4
 - ported to C# + added main menu by Yni Viar.
 
 - The code license is CC-BY-SA-3.0
-
-Bugs:
-- The last room does not generate.
-- The map is not always connected...
