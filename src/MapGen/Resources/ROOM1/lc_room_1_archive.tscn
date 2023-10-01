@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://bmdbgoyct6q6l"]
 
 [ext_resource type="Material" uid="uid://4ucy6rv6imgh" path="res://MapGen/Resources/RoomAssets/LCZ/mat0.008.tres" id="1_esfvy"]
 [ext_resource type="PackedScene" uid="uid://cm7mcq5rrgaxi" path="res://FPSController/PlayerScene.tscn" id="1_tum6i"]
