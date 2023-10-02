@@ -7,7 +7,7 @@ public partial class Facility : Node3D
 	public override void _Ready()
 	{
         CharacterBody3D player = GD.Load<PackedScene>("res://FPSController/PlayerScene.tscn").Instantiate<CharacterBody3D>();
-        player.GlobalPosition = GetNode<Marker3D>("MapGen/LC_room1_archive/entityspawn").GlobalPosition;
+        player.Position = GetNode<Marker3D>("MapGen/LC_room1_archive/entityspawn").GlobalPosition;
         AddChild(player);
 	}
 

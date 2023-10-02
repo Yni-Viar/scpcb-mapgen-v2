@@ -257,22 +257,22 @@ public partial class MapGeneratorSmall : Node
                             if (roomTemp[x + 1, y].angle >= 0)
                             {
                                 adjRoom = roomTemp[x + 1,y];
-                                roomTemp[x, y].angle = 3;
+                                roomTemp[x, y].angle = 90;
                             }
                             else if (roomTemp[x - 1, y].angle >= 0)
                             {
                                 adjRoom = roomTemp[x - 1,y];
-                                roomTemp[x, y].angle = 1;
+                                roomTemp[x, y].angle = 270;
                             }
                             else if (roomTemp[x, y + 1].angle >= 0)
                             {
                                 adjRoom = roomTemp[x,y + 1];
-                                roomTemp[x, y].angle = 2;
+                                roomTemp[x, y].angle = 0;
                             }
                             else
                             {
                                 adjRoom = roomTemp[x, y - 1];
-                                roomTemp[x, y].angle = 0;
+                                roomTemp[x, y].angle = 180;
                             }
 
                             switch (adjRoom.type)
