@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=20 format=3 uid="uid://ba06u0wqmfg3t"]
 
 [ext_resource type="Material" uid="uid://bidnif1xig5ms" path="res://MapGen/Resources/RoomAssets/LCZ/mat0.003.tres" id="1_8xp2h"]
 [ext_resource type="Material" uid="uid://dnr225rxfd5f" path="res://MapGen/Resources/RoomAssets/LCZ/mat1.003.tres" id="2_ja20n"]
@@ -370,7 +370,7 @@ data = PackedVector3Array(-10.24, 10.24, 0, -10.24, -10.24, 0, 3.04, -10.24, 0, 
 
 [node name="LC_cont2_0122" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.19209e-07, -1, 0, 1, -1.19209e-07, 0, 0, 0)
-visibility_range_end = 24.0
+visibility_range_end = 128.0
 mesh = SubResource("ArrayMesh_vr0o3")
 skeleton = NodePath("")
 
