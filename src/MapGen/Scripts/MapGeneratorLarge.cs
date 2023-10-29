@@ -1,13 +1,12 @@
 ﻿using Godot;
 using System;
 
-public partial class MapGeneratorSmall : Node
+public partial class MapGeneratorLarge : Node
 {
     [Export] bool generateMoreR1s = false;
     [Export] bool generateMoreR4s = false;
     //(c) juanjp600. License - CC-BY-SA 3.0.
     internal enum RoomTypes { ROOM1, ROOM2, ROOM2C, ROOM3, ROOM4, EMPTY };
-    internal enum Zone { LightContainment, HeavyContainment, Entrance };
     int room1Amount, room2Amount, room2cAmount, room3Amount, room4Amount;
     internal struct TempRoom
     {
@@ -20,9 +19,13 @@ public partial class MapGeneratorSmall : Node
 		   * 3: means 270° rotation; facing south
 		*/
         internal float angle;
-        internal Zone zone;
     };
-    
+
+    int GetZone(int y)
+    {
+        return (int)Mathf.Floor((float)(20 - y) / 20 * 3);
+    }
+
     void CreateMap()
     {
         RandomNumberGenerator rand = new RandomNumberGenerator();
@@ -30,11 +33,11 @@ public partial class MapGeneratorSmall : Node
         int x2, y2;
         int width, height;
 
-        TempRoom[,] roomTemp = new TempRoom[12, 12];
+        TempRoom[,] roomTemp = new TempRoom[20, 20];
 
-        for (x = 0; x < 12; x++)
+        for (x = 0; x < 20; x++)
         {
-            for (y = 0; y < 12; y++)
+            for (y = 0; y < 20; y++)
             {
                 //roomArray[x][y] = nullptr; - does not work, but is not necessary
                 roomTemp[x, y].type = RoomTypes.ROOM1; //fill the data with values
@@ -42,54 +45,53 @@ public partial class MapGeneratorSmall : Node
             }
         }
 
-        x = 6;
-        y = 11;
+        x = 10;
+        y = 18;
 
-        /*for (int i = y; i < 16; i++)
+        for (int i = y; i < 20; i++)
         {
             roomTemp[x, i].angle = 0; //fill angles
-        }*/
+        }
 
         while (y >= 2)
         {
-            width = (rand.RandiRange(0, 2)) + 6; //map width
+            width = (rand.RandiRange(0, 5)) + 10; //map width
 
-            if (x > 8)
+            if (x > 12)
             {
                 width = -width;
             }
-            else if (x > 6)
+            else if (x > 8)
             {
-                x = x - 6;
+                x = x - 10;
             }
 
             //make sure the hallway doesn't go outside the array
-            if (x + width > 10)
+            if (x + width > 17)
             {
-                width = 10 - x;
+                width = 17 - x;
             }
             else if (x + width < 2)
             {
                 width = -x + 2;
             }
 
-            x = Mathf.Min(x, (x + width));
-            width = Mathf.Abs(width);
+            x = Math.Min(x, (x + width));
+            width = Math.Abs(width);
             for (int i = x; i <= x + width; i++)
             {
-                roomTemp[Mathf.Min(i, 11), y].angle = 0;
+                roomTemp[Math.Min(i, 19), y].angle = 0;
             }
 
             //height is random
-            height = (rand.RandiRange(0, 1)) + 2;
+            height = (rand.RandiRange(0, 1)) + 3;
             if (y - height < 1) height = y;
             //height for each zone
-            int yhallways = (rand.RandiRange(0, 1)) + 1;
+            int yhallways = (rand.RandiRange(0, 1)) + 4;
 
-            //this FOR loop cleans the mapgen from loops.
             for (int i = 1; i <= yhallways; i++)
             {
-                x2 = Mathf.Max(Mathf.Min((rand.RandiRange(0, width - 2)) + x, 8), 2);
+                x2 = Math.Max(Math.Min((rand.RandiRange(0, width - 2)) + x, 18), 2);
                 while (roomTemp[x2, y - 1].angle >= 0 || roomTemp[x2 - 1, y - 1].angle >= 0 || roomTemp[x2 + 1, y - 1].angle >= 0)
                 {
                     x2++;
@@ -121,56 +123,56 @@ public partial class MapGeneratorSmall : Node
         }
 
         room1Amount = room2Amount = room2cAmount = room3Amount = room4Amount = 0;
-        for (x = 0; x < 12; x++)
+        for (x = 0; x < 20; x++)
         {
-            for (y = 0; y < 12; y++)
+            for (y = 0; y < 20; y++)
             {
                 bool hasNorth, hasSouth, hasEast, hasWest;
                 hasNorth = hasSouth = hasEast = hasWest = false;
-                if (roomTemp[x,y].angle == 0)
-                { //this is not a checkpoint room
+                if (roomTemp[x, y].angle == 0)
+                { //this is not a checkpoint Room
                     if (x > 0)
                     {
-                        hasWest = (roomTemp[x - 1,y].angle > -1);
+                        hasWest = (roomTemp[x - 1, y].angle > -1);
                     }
-                    if (x < 11)
+                    if (x < 19)
                     {
-                        hasEast = (roomTemp[x + 1,y].angle > -1);
+                        hasEast = (roomTemp[x + 1, y].angle > -1);
                     }
                     if (y > 0)
                     {
-                        hasNorth = (roomTemp[x,y - 1].angle > -1);
+                        hasNorth = (roomTemp[x, y - 1].angle > -1);
                     }
-                    if (y < 11)
+                    if (y < 19)
                     {
-                        hasSouth = (roomTemp[x,y + 1].angle > -1);
+                        hasSouth = (roomTemp[x, y + 1].angle > -1);
                     }
                     if (hasNorth && hasSouth)
                     {
                         if (hasEast && hasWest)
                         { //room4
-                            float[] avAngle = new float[] {0, 90, 180, 270};
-                            roomTemp[x,y].type = RoomTypes.ROOM4;
+                            float[] avAngle = new float[] { 0, 90, 180, 270 };
+                            roomTemp[x, y].type = RoomTypes.ROOM4;
                             roomTemp[x, y].angle = avAngle[rand.RandiRange(0, 3)];
                             room4Amount++;
                         }
                         else if (hasEast && !hasWest)
                         { //room3, pointing east
-                            roomTemp[x,y].type = RoomTypes.ROOM3;
-                            roomTemp[x,y].angle = 90;
+                            roomTemp[x, y].type = RoomTypes.ROOM3;
+                            roomTemp[x, y].angle = 90;
                             room3Amount++;
                         }
                         else if (!hasEast && hasWest)
                         { //room3, pointing west
-                            roomTemp[x,y].type = RoomTypes.ROOM3;
-                            roomTemp[x,y].angle = 270;
+                            roomTemp[x, y].type = RoomTypes.ROOM3;
+                            roomTemp[x, y].angle = 270;
                             room3Amount++;
                         }
                         else
                         { //vertical room2
-                            float[] avAngle = new float[] {0, 180};
-                            roomTemp[x,y].type = RoomTypes.ROOM2;
-                            roomTemp[x,y].angle = avAngle[rand.RandiRange(0, 1)];
+                            float[] avAngle = new float[] { 0, 180 };
+                            roomTemp[x, y].type = RoomTypes.ROOM2;
+                            roomTemp[x, y].angle = avAngle[rand.RandiRange(0, 1)];
                             room2Amount++;
                         }
                     }
@@ -178,7 +180,7 @@ public partial class MapGeneratorSmall : Node
                     {
                         if (hasNorth && !hasSouth)
                         { //room3, pointing north
-                            roomTemp[x,y].type = RoomTypes.ROOM3;
+                            roomTemp[x, y].type = RoomTypes.ROOM3;
                             roomTemp[x, y].angle = 180;
                             room3Amount++;
                         }
@@ -190,7 +192,7 @@ public partial class MapGeneratorSmall : Node
                         }
                         else
                         { //horizontal room2
-                            float[] avAngle = new float[] {90, 270};
+                            float[] avAngle = new float[] { 90, 270 };
                             roomTemp[x, y].type = RoomTypes.ROOM2;
                             roomTemp[x, y].angle = avAngle[rand.RandiRange(0, 1)];
                             room2Amount++;
@@ -261,10 +263,10 @@ public partial class MapGeneratorSmall : Node
         if (room1Amount < 5 && generateMoreR1s)
         {
             GD.Print("Forcing some ROOM1s");
-            for (y = 2; y < 10 && room1Amount < 5; y++)
+            for (y = 2; y < 19 && room1Amount < 5; y++)
             {
                 //if (getZone(y+2) == i && getZone(y-2) == i) {
-                for (x = 2; x < 10 && room1Amount < 5; x++)
+                for (x = 2; x < 19 && room1Amount < 5; x++)
                 {
                     if (roomTemp[x,y].angle < 0)
                     {
@@ -333,30 +335,29 @@ public partial class MapGeneratorSmall : Node
                         }
                     }
                 }
-                //\}
             }
         }
 
         if (room4Amount < 3 && generateMoreR4s)
         {
             GD.Print("Forcing some ROOM4s\n");
-            for (y = 2; y < 10 && room4Amount < 3; y++)
+            for (y = 2; y < 19 && room4Amount < 3; y++)
             {
                 //if (getZone(y+2) == i && getZone(y-2) == i) {
-                for (x = 2; x < 10 && room4Amount < 3; x++)
+                for (x = 2; x < 19 && room4Amount < 3; x++)
                 {
-                    if (roomTemp[x,y].angle < 0)
+                    if (roomTemp[x, y].angle < 0)
                     {
-                        bool freeSpace = ((roomTemp[x + 1,y].angle >= 0) != (roomTemp[x - 1,y].angle >= 0)) != ((roomTemp[x,y + 1].angle >= 0) != (roomTemp[x,y - 1].angle >= 0));
-                        freeSpace = freeSpace && (((roomTemp[x + 2,y].angle >= 0) != (roomTemp[x - 2,y].angle >= 0)) != ((roomTemp[x,y + 2].angle >= 0) != (roomTemp[x,y - 2].angle >= 0)));
-                        freeSpace = freeSpace && (((roomTemp[x + 1,y + 1].angle >= 0) != (roomTemp[x - 1,y - 1].angle >= 0)) != ((roomTemp[x - 1, y + 1].angle >= 0) != (roomTemp[x + 1, y - 1].angle >= 0)));
+                        bool freeSpace = ((roomTemp[x + 1, y].angle >= 0) != (roomTemp[x - 1, y].angle >= 0)) != ((roomTemp[x, y + 1].angle >= 0) != (roomTemp[x, y - 1].angle >= 0));
+                        freeSpace = freeSpace && (((roomTemp[x + 2, y].angle >= 0) != (roomTemp[x - 2, y].angle >= 0)) != ((roomTemp[x, y + 2].angle >= 0) != (roomTemp[x, y - 2].angle >= 0)));
+                        freeSpace = freeSpace && (((roomTemp[x + 1, y + 1].angle >= 0) != (roomTemp[x - 1, y - 1].angle >= 0)) != ((roomTemp[x - 1, y + 1].angle >= 0) != (roomTemp[x + 1, y - 1].angle >= 0)));
                         if (freeSpace)
                         {
                             TempRoom adjRoom;
 
                             if (roomTemp[x + 1, y].angle >= 0)
                             {
-                                adjRoom = roomTemp[x + 1,y];
+                                adjRoom = roomTemp[x + 1, y];
                                 roomTemp[x, y].angle = 3;
                             }
                             else if (roomTemp[x - 1, y].angle >= 0)
@@ -371,7 +372,7 @@ public partial class MapGeneratorSmall : Node
                             }
                             else
                             {
-                                adjRoom = roomTemp[x,y - 1];
+                                adjRoom = roomTemp[x, y - 1];
                                 roomTemp[x, y].angle = 0;
                             }
 
@@ -415,62 +416,123 @@ public partial class MapGeneratorSmall : Node
         string selectedRoom;
         int currRoom1 = 0;
         int currRoom2 = 0;
-        // you can add more vars for different needs, e.g. currRoom3 or currRoom2c
-        
-        for (int i = 0; i < 12; i++)
+
+        for (int i = 0; i < 20; i++)
         {
-            for (int j = 0; j < 12; j++)
+            for (int j = 0; j < 20; j++)
             {
                 StaticBody3D rm;
                 switch (roomTemp[i, j].type)
                 {
                     case RoomTypes.ROOM1:
-                        if (currRoom1 >= RoomParser.ReadJson("user://rooms.json")["LczSingle1"].Count)
+                        switch (GetZone(j))
                         {
-                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon1"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
+                            case 0:
+                                //LCZ
+                                if (currRoom1 >= RoomParser.ReadJson("user://rooms.json")["LczSingle1"].Count)
+                                {
+                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon1"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
+                                }
+                                else
+                                {
+                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle1"][currRoom1];
+                                }
+                                currRoom1++;
+                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
+                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                                AddChild(rm);
+                                break;
+                            case 1:
+                                //HCZ
+                                break;
+                            case 2:
+                                //EZ
+                                break;
                         }
-                        else
-                        {
-                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle1"][currRoom1];
-                        }
-                        currRoom1++;
-                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                        AddChild(rm);
                         break;
                     case RoomTypes.ROOM2:
-                        if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["LczSingle2"].Count)
+                        switch (GetZone(j))
                         {
-                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon2"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
+                            case 0:
+                                //LCZ
+
+                                if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["LczSingle2"].Count)
+                                {
+                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon2"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
+                                }
+                                else
+                                {
+                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle2"][currRoom2];
+                                }
+                                currRoom2++;
+                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
+                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                                AddChild(rm);
+                                break;
+                            case 1:
+                                //HCZ
+                                break;
+                            case 2:
+                                //EZ
+                                break;
                         }
-                        else
-                        {
-                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle2"][currRoom2];
-                        }
-                        currRoom2++;
-                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                        AddChild(rm);
                         break;
                     case RoomTypes.ROOM2C:
-                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_2c.tscn").Instantiate();
-                        rm.Position = new Vector3(i * 20.48f, 0, j*20.48f);
-                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                        AddChild(rm);
+                        switch (GetZone(j))
+                        {
+                            case 0:
+                                //LCZ
+                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_2c.tscn").Instantiate();
+                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                                AddChild(rm);
+                                break;
+                            case 1:
+                                //HCZ
+                                break;
+                            case 2:
+                                //EZ
+                                break;
+                        }
+                        
                         break;
                     case RoomTypes.ROOM3:
-                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_3.tscn").Instantiate();
-                        rm.Position = new Vector3(i * 20.48f, 0, j*20.48f);
-                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                        AddChild(rm);
+                        switch (GetZone(j))
+                        {
+                            case 0:
+                                //LCZ
+                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_3.tscn").Instantiate();
+                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                                AddChild(rm);
+                                break;
+                            case 1:
+                                //HCZ
+                                break;
+                            case 2:
+                                //EZ
+                                break;
+                        }
                         break;
                     case RoomTypes.ROOM4:
-                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_4.tscn").Instantiate();
-                        rm.Position = new Vector3(i * 20.48f, 0, j*20.48f);
-                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                        AddChild(rm);
+                        switch (GetZone(j))
+                        {
+                            case 0:
+                                //LCZ
+                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_4.tscn").Instantiate();
+                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                                AddChild(rm);
+                                break;
+                            case 1:
+                                //HCZ
+                                break;
+                            case 2:
+                                //EZ
+                                break;
+                        }
                         break;
                 }
             }

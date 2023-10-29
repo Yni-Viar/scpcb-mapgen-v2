@@ -2,7 +2,7 @@ extends Control
 
 
 #Written from tutorials ;D
-var path: String = "res://MapGen/Scenes/TestMapGen.tscn"
+@export var path: String
 var progress = []
 
 # Called when the node enters the scene tree for the first time.
