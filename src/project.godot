@@ -16,6 +16,10 @@ run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon_64.png"
 
+[debug]
+
+file_logging/enable_file_logging=true
+
 [display]
 
 window/size/viewport_width=1920

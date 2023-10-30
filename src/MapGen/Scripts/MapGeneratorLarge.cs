@@ -21,11 +21,6 @@ public partial class MapGeneratorLarge : Node
         internal float angle;
     };
 
-    int GetZone(int y)
-    {
-        return (int)Mathf.Floor((float)(20 - y) / 20 * 3);
-    }
-
     void CreateMap()
     {
         RandomNumberGenerator rand = new RandomNumberGenerator();
@@ -395,23 +390,23 @@ public partial class MapGeneratorLarge : Node
             }
         }
 
-        /*for (x = 0; x < roomTemp.GetLength(0); x++)
+        for (x = 0; x < roomTemp.GetLength(0); x++)
         {
             for (y = 0; y < roomTemp.GetLength(1); y++)
             {
                 switch (roomTemp[y, x].angle)
                 {
                     case -1:
-                        Console.Write("#" + " ");
+                        GD.Print("#" + " ");
                         break;
                     default:
-                        Console.Write((int)roomTemp[y, x].type + " ");
+                        GD.Print((int)roomTemp[y, x].type + " ");
                         break;
                 }
                 
             }
-            Console.WriteLine();
-        }*/
+            GD.Print();
+        }
 
         string selectedRoom;
         int currRoom1 = 0;
@@ -425,199 +420,52 @@ public partial class MapGeneratorLarge : Node
                 switch (roomTemp[i, j].type)
                 {
                     case RoomTypes.ROOM1:
-                        switch (GetZone(j))
+                        if (currRoom1 >= RoomParser.ReadJson("user://rooms.json")["LczSingle1"].Count)
                         {
-                            case 0:
-                                //LCZ
-                                if (currRoom1 >= RoomParser.ReadJson("user://rooms.json")["LczSingle1"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon1"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle1"][currRoom1];
-                                }
-                                currRoom1++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);
-                                break;
-                            case 1:
-                                //HCZ
-                                /*if (currRoom1 >= RoomParser.ReadJson("user://rooms.json")["HczSingle1"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["HczCommon1"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["HczSingle1"][currRoom1];
-                                }
-                                currRoom1++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                            case 2:
-                                //EZ
-                                /*if (currRoom1 >= RoomParser.ReadJson("user://rooms.json")["EzSingle1"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["EzCommon1"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["EzSingle1"][currRoom1];
-                                }
-                                currRoom1++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
+                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon1"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
                         }
+                        else
+                        {
+                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle1"][currRoom1];
+                        }
+                        currRoom1++;
+                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
+                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                        AddChild(rm);
                         break;
                     case RoomTypes.ROOM2:
-                        switch (GetZone(j))
+                        if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["LczSingle2"].Count)
                         {
-                            case 0:
-                                //LCZ
-
-                                if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["LczSingle2"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon2"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle2"][currRoom2];
-                                }
-                                currRoom2++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);
-                                break;
-                            case 1:
-                                //HCZ
-                                /*if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["HczSingle2"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["HczCommon2"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["HczSingle2"][currRoom2];
-                                }
-                                currRoom2++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                            case 2:
-                                //EZ
-                                /*if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["EzSingle2"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["EzCommon2"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["EzSingle2"][currRoom2];
-                                }
-                                currRoom2++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
+                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczCommon2"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
                         }
+                        else
+                        {
+                            selectedRoom = RoomParser.ReadJson("user://rooms.json")["LczSingle2"][currRoom2];
+                        }
+                        currRoom2++;
+                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
+                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                        AddChild(rm);
                         break;
                     case RoomTypes.ROOM2C:
-                        switch (GetZone(j))
-                        {
-                            case 0:
-                                //LCZ
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_2c.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);
-                                break;
-                            case 1:
-                                //HCZ, CHANGE THESE VALUES TO YOURS
-                                /*rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_2c.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                            case 2:
-                                //EZ + intercom room
-                                /*if (currRoom2 >= RoomParser.ReadJson("user://rooms.json")["EzSingle2C"].Count)
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["EzCommon2C"][rand.RandiRange(0, RoomParser.ReadJson("user://rooms.json")["LczCommon1"].Count - 1)];
-                                }
-                                else
-                                {
-                                    selectedRoom = RoomParser.ReadJson("user://rooms.json")["EzSingle2C"][currRoom2];
-                                }
-                                currRoom2++;
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/" + selectedRoom + ".tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                        }
-                        
+                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_2c.tscn").Instantiate();
+                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                        AddChild(rm);
                         break;
                     case RoomTypes.ROOM3:
-                        switch (GetZone(j))
-                        {
-                            case 0:
-                                //LCZ
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_3.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);
-                                break;
-                            case 1:
-                                //HCZ, CHANGE THESE VALUES TO YOURS
-                                /*rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_3.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                            case 2:
-                                //EZ, CHANGE THESE VALUES TO YOURS
-                                /*rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_3.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                        }
+                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_3.tscn").Instantiate();
+                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                        AddChild(rm);
                         break;
                     case RoomTypes.ROOM4:
-                        switch (GetZone(j))
-                        {
-                            case 0:
-                                //LCZ
-                                rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_4.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);
-                                break;
-                            case 1:
-                                //HCZ, CHANGE THESE VALUES TO YOURS
-                                /*rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_4.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                            case 2:
-                                //EZ, CHANGE THESE VALUES TO YOURS
-                                /*rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_4.tscn").Instantiate();
-                                rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
-                                rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
-                                AddChild(rm);*/
-                                break;
-                        }
+                        rm = (StaticBody3D)ResourceLoader.Load<PackedScene>("res://MapGen/Resources/lc_room_4.tscn").Instantiate();
+                        rm.Position = new Vector3(i * 20.48f, 0, j * 20.48f);
+                        rm.RotationDegrees = new Vector3(0, roomTemp[i, j].angle, 0);
+                        AddChild(rm);
                         break;
                 }
             }
