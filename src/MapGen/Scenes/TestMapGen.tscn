@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmii1ln8odksi"]
+[gd_scene load_steps=5 format=3 uid="uid://cmii1ln8odksi"]
 
-[ext_resource type="Script" path="res://MapGen/Scenes/Facility.cs" id="1_4dlkf"]
-[ext_resource type="Script" path="res://MapGen/Scripts/MapGeneratorSmall.cs" id="1_06m16"]
+[ext_resource type="Script" path="res://MapGen/Scripts/MapGen.gd" id="1_bu7cc"]
+[ext_resource type="Script" path="res://MapGen/Scenes/TestMapGen.gd" id="1_cii1c"]
+[ext_resource type="Resource" uid="uid://d0um5wxgotewg" path="res://MapGen/Resources/rooms.tres" id="2_m7hs0"]
 
 [sub_resource type="Environment" id="Environment_pp1cg"]
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
+fog_light_color = Color(0.272326, 0.298018, 0.338405, 1)
 fog_density = 0.15
 fog_height = 1.25
 
 [node name="Game" type="Node3D"]
-script = ExtResource("1_4dlkf")
+script = ExtResource("1_cii1c")
 
 [node name="MapGen" type="Node" parent="."]
-script = ExtResource("1_06m16")
+script = ExtResource("1_bu7cc")
+rooms = ExtResource("2_m7hs0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pp1cg")

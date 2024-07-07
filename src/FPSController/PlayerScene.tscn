@@ -1,42 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm7mcq5rrgaxi"]
+[gd_scene load_steps=6 format=3 uid="uid://cu440emlhve1m"]
 
-[ext_resource type="Script" path="res://FPSController/PlayerScript.cs" id="1_w825c"]
+[ext_resource type="Script" path="res://FPSController/PlayerScript.gd" id="1_rticr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3c6ve"]
+flip_faces = true
+orientation = 2
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.371158
-height = 2.26761
+height = 2.64793
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hhjv1"]
+[sub_resource type="Animation" id="Animation_i7x7w"]
+resource_name = "Walk"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"FootstepAnimate"
+}]
+}
 
-[node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28033, 0)
-script = ExtResource("1_w825c")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uiy40"]
+_data = {
+"Walk": SubResource("Animation_i7x7w")
+}
+
+[node name="Player" type="CharacterBody3D" groups=["Players"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_rticr")
+
+[node name="PlayerModel" type="Node3D" parent="."]
 
 [node name="PlayerHead" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, -0.292869)
 
-[node name="PlayerCamera" type="Camera3D" parent="PlayerHead"]
+[node name="PlayerRecoil" type="Node3D" parent="PlayerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.968611, 0.292869)
 
-[node name="RayCast3D" type="RayCast3D" parent="PlayerHead"]
-collide_with_areas = true
+[node name="PlayerCamera" type="Camera3D" parent="PlayerHead/PlayerRecoil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96861, -0.159767)
+cull_mask = 524287
 
-[node name="PlayerFeet" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.852122, -0.183911)
+[node name="AddYourOwnShader" type="MeshInstance3D" parent="PlayerHead/PlayerRecoil/PlayerCamera"]
+visible = false
+extra_cull_margin = 4096.0
+mesh = SubResource("PlaneMesh_3c6ve")
 
-[node name="StairCheck" type="RayCast3D" parent="PlayerFeet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.368611, 0)
-target_position = Vector3(0, 0, -1)
+[node name="VisionRadius" type="RayCast3D" parent="PlayerHead/PlayerRecoil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, -0.292869)
+target_position = Vector3(0, 0, -128)
+collision_mask = 31
 
-[node name="StairCheck2" type="RayCast3D" parent="PlayerFeet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00260222, -0.0596307, -0.00418782)
-target_position = Vector3(0, 0, -1)
+[node name="RayCast3D" type="RayCast3D" parent="PlayerHead/PlayerRecoil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, -0.292869)
+target_position = Vector3(0, 0, -4)
+collision_mask = 31
+
+[node name="PlayerHand" type="Marker3D" parent="PlayerHead/PlayerRecoil"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.968611, -0.961648)
+
+[node name="ItemSpawn" type="Marker3D" parent="PlayerHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.197413, -0.0797351)
 
 [node name="CollisionBodyCapsule" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.198127, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0386829, 0)
 shape = SubResource("1")
 
-[node name="CollisionBodyCapsule2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.776617, 0)
-shape = SubResource("SphereShape3D_hhjv1")
+[node name="WalkSounds" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.951681, 0)
+max_distance = 12.0
 
-[node name="UI" type="Node" parent="."]
+[node name="InteractSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783644, 0)
+max_distance = 2.3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uiy40")
+}

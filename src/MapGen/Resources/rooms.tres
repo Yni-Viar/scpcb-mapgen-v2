@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="MapGenRoom" load_steps=11 format=3 uid="uid://d0um5wxgotewg"]
+
+[ext_resource type="Script" path="res://MapGen/Scripts/MapGenRoom.gd" id="1_667qd"]
+[ext_resource type="PackedScene" uid="uid://d0t4gplatubn2" path="res://MapGen/Resources/ROOM2C/lc_room_2c.tscn" id="1_e0dy0"]
+[ext_resource type="PackedScene" uid="uid://d37devwlovcyh" path="res://MapGen/Resources/ROOM4/lc_room_4_cross.tscn" id="2_ni03y"]
+[ext_resource type="PackedScene" uid="uid://dylxttjk3shec" path="res://MapGen/Resources/ROOM1/lc_cont_1_testroom.tscn" id="3_2lqro"]
+[ext_resource type="PackedScene" uid="uid://tx6m2511m7fs" path="res://MapGen/Resources/ROOM1/lc_cont_1_079.tscn" id="4_0n3qp"]
+[ext_resource type="PackedScene" uid="uid://bge8rr24haem0" path="res://MapGen/Resources/ROOM2/lc_room_2_walkway.tscn" id="5_cg5hs"]
+[ext_resource type="PackedScene" uid="uid://2mo4lv785rhf" path="res://MapGen/Resources/ROOM2/lc_room_2_vent.tscn" id="6_jckff"]
+[ext_resource type="PackedScene" uid="uid://dxkff13y7w4ji" path="res://MapGen/Resources/ROOM2/lc_cont_2_650.tscn" id="7_o134e"]
+[ext_resource type="PackedScene" uid="uid://dnsj6se3quxfy" path="res://MapGen/Resources/ROOM2/lc_cont_2_scps.tscn" id="8_yxqvh"]
+[ext_resource type="PackedScene" uid="uid://bcdw7ef5gl0ws" path="res://MapGen/Resources/ROOM3/lc_room_3_tway.tscn" id="10_xtw0n"]
+
+[resource]
+script = ExtResource("1_667qd")
+endrooms = Array[PackedScene]([ExtResource("3_2lqro")])
+endrooms_single = Array[PackedScene]([ExtResource("4_0n3qp")])
+hallways = Array[PackedScene]([ExtResource("5_cg5hs"), ExtResource("6_jckff")])
+hallways_single = Array[PackedScene]([ExtResource("7_o134e"), ExtResource("8_yxqvh")])
+corners = Array[PackedScene]([ExtResource("1_e0dy0")])
+corners_single = Array[PackedScene]([])
+trooms = Array[PackedScene]([ExtResource("10_xtw0n")])
+trooms_single = Array[PackedScene]([])
+crossrooms = Array[PackedScene]([ExtResource("2_ni03y")])
+crossrooms_single = Array[PackedScene]([])

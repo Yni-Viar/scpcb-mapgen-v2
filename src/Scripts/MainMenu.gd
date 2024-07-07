@@ -27,6 +27,3 @@ func _on_credits_pressed():
 func _on_exit_pressed():
 	get_tree().quit()
 
-
-func _on_large_facility_pressed():
-	get_tree().change_scene_to_file("res://Scenes/LoadingScreenLarge.tscn")

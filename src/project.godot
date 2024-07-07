@@ -13,7 +13,7 @@ config_version=5
 config/name="SCP-CB Map Generation"
 config/tags=PackedStringArray("map_generation")
 run/main_scene="res://Scenes/MainMenu.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon_64.png"
 
 [debug]
