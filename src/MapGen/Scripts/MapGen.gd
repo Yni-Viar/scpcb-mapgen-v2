@@ -5,6 +5,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 enum RoomTypes {ROOM1, ROOM2, ROOM2C, ROOM3, ROOM4, EMPTY}
 
+@export var seed: int = -1
 ## Rooms that will be used
 @export var rooms: Array[MapGenRoom]
 #currentluy not ported to gdscript
@@ -311,6 +312,8 @@ func create_map():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if seed != -1:
+		rng.seed = seed
 	create_map()
 
 
