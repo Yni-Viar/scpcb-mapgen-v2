@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://qovq70wdqiwf"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ku02"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vyd7k"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="TestRoom1" type="StaticBody3D"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.621736, 0, 0.783227, 0, 1, 0, -0.783227, 0, 0.621736, 0, 0.125964, 0)
+text = "Checkpoint"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-0.634285, 0, -0.773099, 0, 1, 0, 0.773099, 0, -0.634285, -0.133559, 0.125964, -0.108687)
+text = "Checkpoint"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1ku02")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_vyd7k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.788957, 0)

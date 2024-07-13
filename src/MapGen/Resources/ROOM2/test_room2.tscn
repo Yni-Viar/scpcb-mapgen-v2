@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bysf2v2isdevs"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5q23p"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="TestRoom1" type="StaticBody3D"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.621736, 0, 0.783227, 0, 1, 0, -0.783227, 0, 0.621736, 0, 0.0201653, 0)
+text = "Room2"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-0.634285, 0, -0.773099, 0, 1, 0, 0.773099, 0, -0.634285, -0.133559, 0.0201653, -0.108687)
+text = "Room2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.384906, 0, 0, 0, 0.384906, 0, 0, 0, 0.384906, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_5q23p")

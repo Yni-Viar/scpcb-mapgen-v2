@@ -1,8 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmii1ln8odksi"]
+[gd_scene load_steps=12 format=3 uid="uid://cmii1ln8odksi"]
 
 [ext_resource type="Script" path="res://MapGen/Scripts/MapGen.gd" id="1_bu7cc"]
 [ext_resource type="Script" path="res://MapGen/Scenes/TestMapGen.gd" id="1_cii1c"]
 [ext_resource type="Resource" uid="uid://d0um5wxgotewg" path="res://MapGen/Resources/rooms.tres" id="2_m7hs0"]
+[ext_resource type="PackedScene" uid="uid://db5a67rdi61nk" path="res://MapGen/Resources/ROOM2C/test_room2C.tscn" id="4_y4of5"]
+[ext_resource type="PackedScene" uid="uid://be7n4ctxhpg1h" path="res://MapGen/Resources/ROOM4/test_room4.tscn" id="5_iuyu1"]
+[ext_resource type="PackedScene" uid="uid://dvn1p5w1o8a41" path="res://MapGen/Resources/ROOM1/test_room1.tscn" id="6_b0gwe"]
+[ext_resource type="PackedScene" uid="uid://bysf2v2isdevs" path="res://MapGen/Resources/ROOM2/test_room2.tscn" id="7_dln6u"]
+[ext_resource type="Script" path="res://MapGen/Scripts/MapGenRoom.gd" id="8_c6mnw"]
+[ext_resource type="PackedScene" uid="uid://c2qsi4sayxsxx" path="res://MapGen/Resources/ROOM3/test_room3.tscn" id="9_22uji"]
+
+[sub_resource type="Resource" id="Resource_j37mt"]
+script = ExtResource("8_c6mnw")
+endrooms = Array[PackedScene]([ExtResource("6_b0gwe")])
+endrooms_single = Array[PackedScene]([ExtResource("6_b0gwe")])
+hallways = Array[PackedScene]([ExtResource("7_dln6u")])
+hallways_single = Array[PackedScene]([ExtResource("7_dln6u")])
+corners = Array[PackedScene]([ExtResource("4_y4of5")])
+corners_single = Array[PackedScene]([ExtResource("4_y4of5")])
+trooms = Array[PackedScene]([ExtResource("9_22uji")])
+trooms_single = Array[PackedScene]([ExtResource("9_22uji")])
+crossrooms = Array[PackedScene]([ExtResource("5_iuyu1")])
+crossrooms_single = Array[PackedScene]([ExtResource("5_iuyu1")])
 
 [sub_resource type="Environment" id="Environment_pp1cg"]
 fog_light_color = Color(0.272326, 0.298018, 0.338405, 1)
@@ -14,7 +33,7 @@ script = ExtResource("1_cii1c")
 
 [node name="MapGen" type="Node" parent="."]
 script = ExtResource("1_bu7cc")
-rooms = ExtResource("2_m7hs0")
+rooms = Array[ExtResource("8_c6mnw")]([ExtResource("2_m7hs0"), SubResource("Resource_j37mt")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pp1cg")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://be7n4ctxhpg1h"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ejfwh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_axo3o"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="TestRoom1" type="StaticBody3D"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.621736, 0, 0.783227, 0, 1, 0, -0.783227, 0, 0.621736, 0, 0.782699, 0)
+text = "Room4
+"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(-0.634285, 0, -0.773099, 0, 1, 0, 0.773099, 0, -0.634285, -0.133559, 0.782699, -0.108687)
+text = "Room4
+"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ejfwh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_axo3o")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.788957, 0)

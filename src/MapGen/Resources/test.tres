@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MapGenRoom" load_steps=7 format=3 uid="uid://bmtvf3rmqb0a5"]
+
+[ext_resource type="PackedScene" uid="uid://db5a67rdi61nk" path="res://MapGen/Resources/ROOM2C/test_room2C.tscn" id="1_ufkho"]
+[ext_resource type="PackedScene" uid="uid://be7n4ctxhpg1h" path="res://MapGen/Resources/ROOM4/test_room4.tscn" id="2_345dw"]
+[ext_resource type="PackedScene" uid="uid://dvn1p5w1o8a41" path="res://MapGen/Resources/ROOM1/test_room1.tscn" id="3_ilbfj"]
+[ext_resource type="PackedScene" uid="uid://bysf2v2isdevs" path="res://MapGen/Resources/ROOM2/test_room2.tscn" id="4_1bnsh"]
+[ext_resource type="Script" path="res://MapGen/Scripts/MapGenRoom.gd" id="5_aclcb"]
+[ext_resource type="PackedScene" uid="uid://c2qsi4sayxsxx" path="res://MapGen/Resources/ROOM3/test_room3.tscn" id="6_arxyb"]
+
+[resource]
+script = ExtResource("5_aclcb")
+endrooms = Array[PackedScene]([ExtResource("3_ilbfj")])
+endrooms_single = Array[PackedScene]([ExtResource("3_ilbfj")])
+hallways = Array[PackedScene]([ExtResource("4_1bnsh")])
+hallways_single = Array[PackedScene]([ExtResource("4_1bnsh")])
+corners = Array[PackedScene]([ExtResource("1_ufkho")])
+corners_single = Array[PackedScene]([ExtResource("1_ufkho")])
+trooms = Array[PackedScene]([ExtResource("6_arxyb")])
+trooms_single = Array[PackedScene]([ExtResource("6_arxyb")])
+crossrooms = Array[PackedScene]([ExtResource("2_345dw")])
+crossrooms_single = Array[PackedScene]([ExtResource("2_345dw")])
